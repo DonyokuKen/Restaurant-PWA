@@ -10,7 +10,6 @@ const ListResto = {
       <div class="content">
         <h2 class="content__heading">Resto List</h2>
         <div id="Restos" class="Restos">
-
         </div>
       </div>
     `;
