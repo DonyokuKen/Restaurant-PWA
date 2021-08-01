@@ -14,23 +14,23 @@ describe('Liking A Resto', () => {
   it('should show the like button when the resto has not been liked before', async () => {
     await TestFactories.createLikeButtonInitiatorWithResto({ id: 1 });
 
-    expect(document.querySelector('[aria-label="like this resto"]'))
+    expect(document.querySelector('[aria-label="like this Resto"]'))
       .toBeTruthy();
   });
 
   it('should not show the unlike button when the resto has not been liked before', async () => {
     await TestFactories.createLikeButtonInitiatorWithResto({ id: 1 });
 
-    expect(document.querySelector('[aria-label="unlike this resto"]')).toBeFalsy();
+    expect(document.querySelector('[aria-label="unlike this Resto"]')).toBeFalsy();
   });
 
   it('should be able to like the resto', async () => {
     await TestFactories.createLikeButtonInitiatorWithResto({ id: 1 });
 
     document.querySelector('#likeButton').dispatchEvent(new Event('click'));
-    const resto = await FavoriteRestoIdb.getResto(1);
+    const Resto = await FavoriteRestoIdb.getResto(1);
 
-    expect(resto).toEqual({ id: 1 });
+    expect(Resto).toEqual({ id: 1 });
 
     FavoriteRestoIdb.deleteResto(1);
   });

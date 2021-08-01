@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import FavoriteRestoIdb from '../data/favorite-resto-idb';
 import { createLikeButtonTemplate, createLikedButtonTemplate } from '../views/templates/template-creator';
 
@@ -5,7 +6,7 @@ const LikeButtonInitiator = {
   async init({ likeButtonContainer, favoriteResto, data }) {
     this._likeButtonContainer = likeButtonContainer;
     this._favoriteResto = favoriteResto;
-    this._restaurant = data.restaurant;
+    this._restaurant = data;
 
     await this._renderButton();
   },
@@ -21,7 +22,7 @@ const LikeButtonInitiator = {
   },
 
   async _isRestoExist(id) {
-    const Resto = await FavoriteRestoIdb.getResto(id);
+    const Resto = await this._favoriteResto.getResto(id);
     return !!Resto;
   },
 
@@ -30,7 +31,7 @@ const LikeButtonInitiator = {
 
     const likeButton = document.querySelector('#likeButton');
     likeButton.addEventListener('click', async () => {
-      await FavoriteRestoIdb.putResto(this._restaurant);
+      await this._favoriteResto.putResto(this._restaurant);
       this._renderButton();
     });
   },
@@ -40,7 +41,7 @@ const LikeButtonInitiator = {
 
     const likeButton = document.querySelector('#likeButton');
     likeButton.addEventListener('click', async () => {
-      await FavoriteRestoIdb.deleteResto(this._restaurant.id);
+      await this._favoriteResto.deleteResto(this._restaurant.id);
       this._renderButton();
     });
   },
